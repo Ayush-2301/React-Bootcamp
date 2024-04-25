@@ -1,19 +1,31 @@
 import { useState } from "react";
+import { useEffect } from "react";
 
 function Counter() {
   const [value, setValue] = useState(0);
   function increment() {
-    setValue(value + 1);
-    console.log("Value after inceremnt", value);
+    setValue((prev) => prev + 1);
+    console.log("Value after increment", value);
   }
   function decrement() {
-    setValue(value - 1);
+    setValue((prev) => prev - 1);
     console.log("Value after decrement", value);
   }
+
+  // useEffect(() => {
+  //   console.log("Value change");
+  // }, [value]);
+  // useEffect(() => {
+  //   console.log("Value changed on every render");
+  // });
+  useEffect(() => {
+    console.log("value changed");
+  }, []);
+
   return (
     <div>
       <button onClick={increment}>+</button>
-      {value}
+      <div>{value}</div>
       <button onClick={decrement}>-</button>
     </div>
   );
